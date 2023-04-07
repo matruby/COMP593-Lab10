@@ -2,7 +2,7 @@
 
 import os 
 import requests as req
-from image_lib2 import download_image, save_image_file
+from image_lib import download_image, save_image_file
 
 POKE_API_URL = 'https://pokeapi.co/api/v2/pokemon' 
 
@@ -64,9 +64,8 @@ def download_pokemon_artwork(pokemon_name, save_dir):
     
     # Get the image type from the end of the url 
     file_ext = artwork_url.split('.')[-1]
-    # Create the path to save the file and save the file
+    # Create the path to save the file 
     image_path = os.path.join(save_dir, f'{pokemon_name}.{file_ext}')
-    save_image_file(img_bin, image_path)
-
-main()
-
+    # Save the image file 
+    if save_image_file(img_bin, image_path):
+        return image_path
